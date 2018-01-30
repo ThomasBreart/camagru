@@ -41,8 +41,9 @@ if (isset($_POST['Inscription'])) {
     http_response_code(500);
     die('Error establishing connection with database');
   }
-} else {
+} /*else {
   echo "BBBBBB";
+}*/
 }
 ?>
 <html>

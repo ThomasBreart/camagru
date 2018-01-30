@@ -1,17 +1,23 @@
 <?PHP
 
-	include 'database.php';
 
-	function createDB($DB_DSN, $DB_USER, $DB_PASSWORD) {
+	function createDB() {
+		include 'database.php';
+
 		try {
-			$DB = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+			$DB = new PDO($DB_DSN_LIGHT, $DB_USER, $DB_PASSWORD);
 			$DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$DB->exec('DROP DATABASE IF EXISTS camagru; CREATE DATABASE camagru;');
+			echo "Database created successfully\n";
 		} catch (PDOException $e) {
 			echo 'La base de donnée n\'est pas disponible, merci de réessayer plus tard.' . PHP_EOL;
+			echo $e->getMessage();
+			return;//todo tester ce cas
 		}
 
 		try {
-			$DB->exec('DROP DATABASE IF EXISTS camagru; CREATE DATABASE camagru;');
+			//$DB->exec('DROP DATABASE IF EXISTS camagru; CREATE DATABASE camagru;');
+			$DB = new PDO($DB_DSN_LIGHT, $DB_USER, $DB_PASSWORD);
 			$DB->exec('USE camagru;
 			CREATE TABLE user (
 				id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -27,6 +33,6 @@
 		//TODO rajouter la creation des tables
 	}
 
-	createDB($DB_DSN, $DB_USER, $DB_PASSWORD);
+	createDB();
 
 ?>
