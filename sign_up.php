@@ -44,7 +44,6 @@ if (isset($_POST['Inscription'])) {
 } /*else {
   echo "BBBBBB";
 }*/
-
 }
 ?>
 <html>
