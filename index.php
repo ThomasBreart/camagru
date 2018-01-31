@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <?php
   if (isset($_POST['Connexion'])) {
     $mail = $_POST['mail'];

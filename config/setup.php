@@ -39,8 +39,9 @@ function createUserTable($DB_DSN, $DB_USER, $DB_PASSWORD) {
 				id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 				username NVARCHAR(25) NOT NULL,
 				mail NVARCHAR(255) NOT NULL,
-				password VARCHAR(255) NOT NULL
-			);');
+				password NVARCHAR(255) NOT NULL,
+				hash VARCHAR(32) NOT NULL,
+				active INT(1) NOT NULL DEFAULT 0);');
 			echo "user table created successfully<br/>";
 		} catch(PDOException $e) {
 			echo "fail create table user<br/>";
